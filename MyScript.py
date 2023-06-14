@@ -16,11 +16,12 @@ def create_file_guard(filename):
 
 def create_header_file(filename, file_guard):
     global file_name1
+    global user_name
     if os.path.isfile(filename):
         print(filename+"    File Already exists.")
     else:
         with open(filename, 'w') as file:
-            file.write("/*\n  * File:  "+filename.split("\\")[-1]+" \n *	SWC:    "+file_name1+"\n *	Version: 1.0 \n *  Created on: "+datetime.datetime.now().strftime("%d-%m-%Y")+" \n *  Author: Abdallah ragab \n */"  + "\n")
+            file.write("/*\n  * File:  "+filename.split("\\")[-1]+" \n *	SWC:    "+file_name1+"\n *	Version: 1.0 \n *  Created on: "+datetime.datetime.now().strftime("%d-%m-%Y")+" \n *  Author: "+user_name+" \n */"  + "\n")
             file.write("#ifndef " + file_guard + "\n")
             file.write("#define " + file_guard + "\n\n")
             file.write("#endif // " + file_guard + "\n")
@@ -39,6 +40,7 @@ def create_C_file(filename):
 # Receive string from Eclipse
 received_string = sys.argv[1]
 file_name1=sys.argv[2]
+user_name=sys.argv[3]
 print(sys.argv[1])
 
 config_file_guard = create_file_guard(file_name1 + "_Config_H")
